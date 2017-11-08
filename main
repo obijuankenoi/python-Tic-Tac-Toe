@@ -1,0 +1,113 @@
+import time as t
+
+def drawBoard():
+    print(game[0][0], "|", game[0][1], "|", game[0][2])
+    print("---------")
+    print(game[1][0], "|", game[1][1], "|", game[1][2])
+    print("---------")
+    print(game[2][0], "|", game[2][1], "|", game[2][2])
+def restartBoard():
+    for i in range(len(game)):
+        for j in range(len(game)):
+            game[i][j] = " "
+def availMove():
+    count = 9
+    for i in range(len(game)):
+        for j in range(len(game)):
+            if(game[i][j] == 'X' or game[i][j] == "O"):
+                count -=1
+                if(count <= 0):
+                    drawBoard()
+                    print()
+                    t.sleep(2)
+                    print("There are no more possible moves.\nRestarting game.\n")
+                    t.sleep(2)
+                    restartBoard()
+                    drawBoard()
+                    print("\n", player1, "enter your move.")
+                    row = int(input()) - 1
+                    col = int(input()) - 1
+                    print("\n")
+                    game[row][col] = 'X'
+
+game = [[' ',' ',' '],
+        [' ',' ',' '],
+        [' ',' ',' ']]
+
+winner = False
+response = 'y'
+print("Enter player 1's name.")
+player1 = input().capitalize()
+print("Enter play 2's name.")
+player2 = input().capitalize()
+print("To play you use 2 numbers. The first number is the row, the second is the column."
+      "\ni.e(1 'enter' 1 'enter' will put an X on the top left corner)\n\n")
+while(winner == False):
+    drawBoard()
+    print("\n",player1,"enter your move.")
+    row = int(input())-1
+    col = int(input())-1
+    print("\n")
+    game[row][col]='X'
+    availMove()
+    if ((game[0][0] == "X" and game[0][1] == "X" and game[0][2] == "X")
+        or (game[0][0] == "X" and game[1][1] == "X" and game[2][2] == "X")
+        or (game[0][2] == "X" and game[1][1] == "X" and game[2][0] == "X")
+        or (game[0][1] == "X" and game[1][1] == "X" and game[2][1] == "X")
+        or (game[1][0] == "X" and game[1][1] == "X" and game[1][2] == "X")
+        or (game[2][0] == "X" and game[2][1] == "X" and game[2][2] == "X")
+        or (game[0][0] == "X" and game[1][0] == "X" and game[2][0] == "X")
+        or (game[0][2] == "X" and game[1][2] == "X" and game[2][2] == "X")):
+        print(player1, "wins!")
+        drawBoard()
+        winner = True
+        if(winner == True):
+            print("Rematch?")
+            response = input()
+            if(response == "y"):
+                restartBoard()
+                drawBoard()
+                winner = False
+                print("\n", player1, "enter your move.")
+                row = int(input()) - 1
+                col = int(input()) - 1
+                print("\n")
+                game[row][col] = 'X'
+                drawBoard()
+            else:
+                print("Good game!",player1,"and",player2)
+                break
+    drawBoard()
+    print("\n",player2,"enter your move.")
+    row = int(input())-1
+    col = int(input())-1
+    print("\n")
+    game[row][col]="O"
+    availMove()
+    if ((game[0][0] == "O" and game[0][1] == "O" and game[0][2] == "O")
+        or (game[0][0] == "O" and game[1][1] == "O" and game[2][2] == "O")
+        or (game[0][2] == "O" and game[1][1] == "O" and game[2][0] == "O")
+        or (game[0][1] == "O" and game[1][1] == "O" and game[2][1] == "O")
+        or (game[1][0] == "O" and game[1][1] == "O" and game[1][2] == "O")
+        or (game[2][0] == "O" and game[2][1] == "O" and game[2][2] == "O")
+        or (game[0][0] == "O" and game[1][0] == "O" and game[2][0] == "O")
+        or (game[0][2] == "O" and game[1][2] == "O" and game[2][2] == "O")):
+        print(player2, "wins!")
+        drawBoard()
+        winner = True
+        if(winner == True):
+            print("Rematch?")
+            response = input()
+            if(response == "y"):
+                restartBoard()
+                winner = False
+                drawBoard()
+                print("\n", player2, "enter your move.")
+                row = int(input()) - 1
+                col = int(input()) - 1
+                print("\n")
+                game[row][col] = 'O'
+                drawBoard()
+            else:
+                print("Good game!",player1,"and",player2)
+                break
