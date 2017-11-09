@@ -1,5 +1,50 @@
 import time as t
+import turtle
 
+def drawTurtleBoard():
+    turtle.Screen()
+    turtle.screensize(100, 100)
+    #Draw first vertical line
+    turtle.pu()
+    turtle.setheading(90)
+    turtle.goto(-100,0)
+    turtle.pd()
+    turtle.forward(130)
+    turtle.setheading(270)
+    turtle.forward(260)
+    #Draw second vertical line
+    turtle.pu()
+    turtle.goto(0,0)
+    turtle.setheading(90)
+    turtle.pd()
+    turtle.forward(130)
+    turtle.setheading(270)
+    turtle.forward(260)
+    #Draw first horizontal line
+    turtle.pu()
+    turtle.goto(-200,50)
+    turtle.setheading(0)
+    turtle.pd()
+    turtle.forward(300)
+    #Draw second horizontal line
+    turtle.pu()
+    turtle.goto(-200,-50)
+    turtle.pd()
+    turtle.forward(300)
+    turtle.pu()
+    turtle.home()
+def drawX_11():
+    turtle.pensize(5)
+    turtle.goto(-175,120)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(-120,120)
+    turtle.setheading(225)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.hideturtle()
 def drawBoard():
     print(player1,"score: ",player1Score,"|",player2,"score: ",player2Score)
     print(game[0][0], "|", game[0][1], "|", game[0][2])
@@ -38,6 +83,8 @@ player1Score = 0
 player2Score = 0
 winner = False
 response = 'y'
+drawTurtleBoard()
+drawX_11()
 print("Enter player 1's name.")
 player1 = input().capitalize()
 print("Enter play 2's name.")
@@ -46,6 +93,7 @@ print("To play you use 2 numbers. The first number is the row, the second is the
       "\ni.e(1 'enter' 1 'enter' will put an X on the top left corner)\n\n")
 while(winner == False):
     drawBoard()
+    drawTurtleBoard()
     print("\n",player1,"enter your move.")
     row = int(input())-1
     col = int(input())-1
