@@ -4,6 +4,8 @@ import turtle
 def drawTurtleBoard():
     turtle.Screen()
     turtle.screensize(100, 100)
+    turtle.speed(0)
+    turtle.hideturtle()
     #Draw first vertical line
     turtle.pu()
     turtle.setheading(90)
@@ -45,6 +47,108 @@ def drawX_11():
     turtle.pd()
     turtle.forward(75)
     turtle.hideturtle()
+def drawX_12():
+    turtle.showturtle()
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(-80,120)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(-25,120)
+    turtle.setheading(225)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.hideturtle()
+def drawX_13():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(20,120)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(75,120)
+    turtle.pd()
+    turtle.setheading(225)
+    turtle.forward(75)
+def drawX_21():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(-175, 25)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(-120, 25)
+    turtle.setheading(225)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.hideturtle()
+def drawX_22():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(-80, 25)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(-25, 25)
+    turtle.setheading(225)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.hideturtle()
+def drawX_23():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(20, 25)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(75, 25)
+    turtle.pd()
+    turtle.setheading(225)
+    turtle.forward(75)
+def drawX_31():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(-175, -65)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(-120, -65)
+    turtle.setheading(225)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.hideturtle()
+def drawX_32():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(-80, -65)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(-25, -65)
+    turtle.setheading(225)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.hideturtle()
+def drawX_33():
+    turtle.pu()
+    turtle.pensize(5)
+    turtle.goto(20, -65)
+    turtle.setheading(315)
+    turtle.pd()
+    turtle.forward(75)
+    turtle.pu()
+    turtle.goto(75, -65)
+    turtle.pd()
+    turtle.setheading(225)
+    turtle.forward(75)
 def drawBoard():
     print(player1,"score: ",player1Score,"|",player2,"score: ",player2Score)
     print(game[0][0], "|", game[0][1], "|", game[0][2])
@@ -75,6 +179,14 @@ def availMove():
                     col = int(input()) - 1
                     print("\n")
                     game[row][col] = 'X'
+def openSpot(num1,num2,letter):
+    if(game[num1][num2] == "X" or game[num1][num2] == "O"):
+        drawBoard()
+        print("\nThat spot is being used already please try again.\n")
+        row = int(input())-1
+        col = int(input())-1
+        openSpot(row,col,letter)
+        game[row][col] == letter
 
 game = [[' ',' ',' '],
         [' ',' ',' '],
@@ -85,6 +197,14 @@ winner = False
 response = 'y'
 drawTurtleBoard()
 drawX_11()
+drawX_12()
+drawX_13()
+drawX_21()
+drawX_22()
+drawX_23()
+drawX_31()
+drawX_32()
+drawX_33()
 print("Enter player 1's name.")
 player1 = input().capitalize()
 print("Enter play 2's name.")
@@ -98,6 +218,7 @@ while(winner == False):
     row = int(input())-1
     col = int(input())-1
     print("\n")
+    openSpot(row,col,"X")
     game[row][col]='X'
     availMove()
     if ((game[0][0] == "X" and game[0][1] == "X" and game[0][2] == "X")
@@ -133,6 +254,7 @@ while(winner == False):
     row = int(input())-1
     col = int(input())-1
     print("\n")
+    openSpot(row,col,"O")
     game[row][col]="O"
     availMove()
     if ((game[0][0] == "O" and game[0][1] == "O" and game[0][2] == "O")
